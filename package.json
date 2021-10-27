@@ -1,0 +1,32 @@
+{
+  "name": "@binary/cmake",
+  "version": "1.0.0-3.21.3",
+  "description": "cmake",
+  "main": "lib",
+  "publishConfig": {
+    "registry": "https://registry-lpm.listenai.com"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "jest",
+    "prepublishOnly": "rm -rf lib && npm run build",
+    "install": "node lib/install.js"
+  },
+  "author": "xychen <xychen@listenai.com>",
+  "maintainers": [
+    "xychen <xychen@listenai.com"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "download": "^8.0.0"
+  },
+  "devDependencies": {
+    "@binary/type": "^1.0.1",
+    "@types/download": "^8.0.1",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.1",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
+  }
+}
