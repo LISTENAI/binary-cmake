@@ -2,7 +2,8 @@
   "name": "@binary/cmake",
   "version": "1.0.0-3.21.3",
   "description": "cmake",
-  "main": "lib",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "registry": "https://registry-lpm.listenai.com"
   },
@@ -18,10 +19,10 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
+    "@binary/type": "^1.0.1",
     "download": "^8.0.0"
   },
   "devDependencies": {
-    "@binary/type": "^1.0.1",
     "@types/download": "^8.0.1",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.1",
