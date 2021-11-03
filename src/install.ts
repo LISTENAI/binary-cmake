@@ -1,20 +1,13 @@
-import * as download from 'download';
+import download from '@xingrz/download2';
 import { rm } from 'fs/promises';
-import { platform } from 'os';
-import { join } from 'path';
+import { HOME } from './index';
 
-const PREFIX = 'https://cdn.iflyos.cn/public/lisa-binary/cmake/';
+const PACKAGE = 'cmake';
+const VERSION = '3.21.4';
 
-const SUFFIX = (() => {
-  switch (platform()) {
-    case 'win32': return 'windows-x86_64.zip';
-    case 'darwin': return 'macos-universal.tar.gz';
-    default: return 'linux-x86_64.tar.gz';
-  }
-})();
+const NAME = `${PACKAGE}-${VERSION}-${process.platform}_${process.arch}.tar.zst`;
 
-const NAME = `cmake-3.21.3-${SUFFIX}`;
-const HOME = join(__dirname, '..', 'binary');
+const URL = `https://cdn.iflyos.cn/public/lisa-binary/${PACKAGE}/${NAME}`;
 
 (async () => {
 
@@ -23,7 +16,7 @@ const HOME = join(__dirname, '..', 'binary');
   } catch (e) {
   }
 
-  await download(`${PREFIX}${NAME}`, HOME, {
+  await download(URL, HOME, {
     extract: true,
   });
 
