@@ -1,21 +1,15 @@
-name: test
+name: publish
 
 on:
-  push:
-    branches: [ master ]
+  release:
+    types: [released]
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+  publish:
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
 
       - uses: actions/setup-node@v3
         with:
@@ -27,13 +21,8 @@ jobs:
           npm config set //registry-lpm.listenai.com/:username lpmadmin
           npm config set //registry-lpm.listenai.com/:email lpm.admin@listenai.com
           npm config set //registry-lpm.listenai.com/:always-auth true
-          npm config set @binary:registry https://registry-lpm.listenai.com
+      - name: Install dependencies
+        run: npm install --ignore-scripts --registry=https://registry-lpm.listenai.com
 
-      - name: Build
-        run: npm install --ignore-scripts && npm run build
-
-      - name: Install binary
-        run: npm install
-
-      - name: Test
-        run: npm test
+      - name: Publish (latest)
+        run: npm publish --registry=https://registry-lpm.listenai.com

@@ -3,7 +3,7 @@ import { rm } from 'fs/promises';
 import { HOME } from './index';
 
 const PACKAGE = 'cmake';
-const VERSION = '3.21.4';
+const VERSION = '3.25.3';
 
 const NAME = `${PACKAGE}-${VERSION}-${process.platform}_${process.arch}.tar.zst`;
 
